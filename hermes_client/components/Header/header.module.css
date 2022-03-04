@@ -1,0 +1,22 @@
+.header_container{
+    position:sticky;
+    top:0;
+    left:0;
+    right:0;
+    background-color: var(--secondary);
+    height:8vh;
+    padding:3%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_container h2{
+    margin: 0;
+}
+
+.header_container span{
+    font-size:30px;
+    padding-right:5px;
+    color:var(--purple)
+}
