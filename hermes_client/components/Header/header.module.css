@@ -18,5 +18,6 @@
 .header_container span{
     font-size:30px;
     padding-right:5px;
-    color:var(--purple)
+    color:var(--purple);
+    cursor:pointer;
 }
