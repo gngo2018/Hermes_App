@@ -13,11 +13,13 @@
 
 .header_container h2{
     margin: 0;
+    width:150px;
 }
 
 .header_container span{
+    width:150px;
     font-size:30px;
-    padding-right:5px;
     color:var(--purple);
     cursor:pointer;
+    text-align: right;
 }

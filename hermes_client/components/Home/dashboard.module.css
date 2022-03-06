@@ -1,0 +1,34 @@
+.dashboard_container{
+    padding:0 6%;
+}
+
+.chat_flex_container{
+    margin:10% 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.chat_image{
+    height:50px;
+    width:50px;
+    background-color: var(--purple);
+    border-radius: 5px;
+}
+
+.chat_text{
+    margin-left:15px;
+}
+
+@media (min-width:700px) {
+    .chat_flex_container{
+        margin:5% 0;
+    }
+}
+
+@media (min-width:1024px) {
+    .dashboard_container{
+        display:flex;
+        justify-content: space-around;
+    }
+}
