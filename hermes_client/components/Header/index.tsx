@@ -10,7 +10,7 @@ export default function Header() {
     return (
         <>
             <div className={headerStyles.header_container}>
-                <Link href='/'>
+                <Link href='/' passHref>
                     <h2 onClick={() => setPageTitle('Home')}>Hermes</h2>
                 </Link>
                 <div>{pageTitle}</div>
