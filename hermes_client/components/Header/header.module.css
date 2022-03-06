@@ -24,3 +24,9 @@
     cursor:pointer;
     text-align: right;
 }
+
+@media(min-width:1024px){
+    .header_container{
+        padding:0 3%;
+    }
+}
