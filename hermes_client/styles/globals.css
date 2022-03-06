@@ -14,6 +14,10 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+input{
+  font-size:16px;
+}
+
 input:focus, textarea:focus, select:focus{
   outline: none;
 }
@@ -27,4 +31,5 @@ button{
   color:white;
   border-radius: 15px;
   border:none;
+  font-size:16px;
 }
