@@ -1,6 +1,8 @@
 {
+  "main": "src/index.ts",
   "scripts": {
-    "start": "nodemon index.ts"
+    "start": "npx tsc -w",
+    "dev": "npx nodemon"
   },
   "dependencies": {
     "express": "^4.17.3"
