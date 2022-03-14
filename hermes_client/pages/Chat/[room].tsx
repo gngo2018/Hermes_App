@@ -5,7 +5,7 @@ import { io, Socket } from 'socket.io-client'
 import { usePageTitleContext } from '../../contexts/PageTitleContext'
 import chatStyles from './chat.module.css'
 
-const socket = io('ws:' + process.env.NEXT_PUBLIC_hermes_ws_url);
+const socket = io('ws:' + process.env.NEXT_PUBLIC_hermes_ws_url, {secure: true});
 
 export default function Room(){
     const messageLogArray= [
