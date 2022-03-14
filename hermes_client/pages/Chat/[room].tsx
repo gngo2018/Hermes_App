@@ -5,7 +5,7 @@ import { io, Socket } from 'socket.io-client'
 import { usePageTitleContext } from '../../contexts/PageTitleContext'
 import chatStyles from './chat.module.css'
 
-const socket = io('ws:' + process.env.NEXT_PUBLIC_hermes_ws_url, {secure: true});
+const socket = io(process.env.NEXT_PUBLIC_hermes_api_url!);
 
 export default function Room(){
     const messageLogArray= [
@@ -45,6 +45,8 @@ export default function Room(){
     }, [room]);
 
     useEffect(() =>{
+        console.log(socket);
+        
         socket.on('hello', (arg) => {
             console.log('Message from server:', arg);
         });
