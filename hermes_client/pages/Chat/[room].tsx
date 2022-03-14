@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import { io, Socket } from 'socket.io-client'
 import { usePageTitleContext } from '../../contexts/PageTitleContext'
 import chatStyles from './chat.module.css'
+
+const socket = io('ws:' + process.env.NEXT_PUBLIC_hermes_ws_url);
 
 export default function Room(){
     const messageLogArray= [
@@ -29,6 +32,7 @@ export default function Room(){
     
             const inMemoryMessageLog = messageLog;
             setMessageLog([...inMemoryMessageLog, messageObj]);
+            socket.emit('howdy', message);
             setMessage('');
         }
     }
@@ -39,6 +43,12 @@ export default function Room(){
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [room]);
+
+    useEffect(() =>{
+        socket.on('hello', (arg) => {
+            console.log('Message from server:', arg);
+        });
+    }, [])
 
     return(
         <div className={chatStyles.room_container}>
