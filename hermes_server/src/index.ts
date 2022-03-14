@@ -6,8 +6,6 @@ import Ping from "./api/ping"
 const app = express();
 const port = 3005;
 
-let http = require("http").Server(app);
-
 const allowedOrigins = ['http://localhost:3000', 'https://hermes-app-blush.vercel.app'];
 
 const options: cors.CorsOptions = {
@@ -16,8 +14,9 @@ const options: cors.CorsOptions = {
 
 app.use(cors(options));
 app.use(express.json());
-
 app.use("/api/ping", Ping);
+
+let http = require("http").Server(app);
 
 const io = new Server(http, {
   cors: {
