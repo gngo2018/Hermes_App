@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { io, Socket } from 'socket.io-client'
 import { usePageTitleContext } from '../../contexts/PageTitleContext'
 import chatStyles from './chat.module.css'
+import { useUserContext } from '../../contexts/UserContext'
 
 const socket = io(process.env.NEXT_PUBLIC_hermes_api_url!);
 
@@ -16,23 +17,23 @@ export default function Room() {
     ]
     const router = useRouter();
     const { room } = router.query;
+    const { userName } = useUserContext();
     const { setPageTitle } = usePageTitleContext();
     const [message, setMessage] = useState('');
     const [messageLog, setMessageLog] = useState(messageLogArray);
-
 
     function SubmitMessage() {
         if (message !== '') {
             const messageObj = {
                 id: 5,
-                messageSender: 'Guest',
+                messageSender: userName,
                 message: message,
                 profileColor: 'green'
             };
 
             const inMemoryMessageLog = messageLog;
             setMessageLog([...inMemoryMessageLog, messageObj]);
-            socket.emit('howdy', message);
+            socket.emit('howdy', messageObj);
             setMessage('');
         }
     }
@@ -53,22 +54,19 @@ export default function Room() {
     }, [])
 
     useEffect(() => {
-        socket.on('chat-response', msg => {
-            console.log(msg);
+        socket.on('chat-response', msgObj => {
+            console.log(msgObj);
             const id = socket.id;
+
             const messageObj = {
                 id: 6,
-                messageSender: id,
-                message: msg,
+                messageSender: msgObj.messageSender,
+                message: msgObj.message,
                 profileColor: 'red'
             };
 
-            console.log(messageObj);
-
-
             const inMemoryMessageLog = messageLog;
             setMessageLog([...inMemoryMessageLog, messageObj]);
-            setMessage('');
         })
     });
 

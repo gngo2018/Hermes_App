@@ -18,11 +18,23 @@
 }
 
 .header_container span{
-    width:150px;
     font-size:30px;
     color:var(--purple);
     cursor:pointer;
     text-align: right;
+}
+
+.header_right_container{
+    width:150px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.user_name{
+    color:var(--purple);
+    font-size: 20px;
+    margin-right:10px;
 }
 
 @media(min-width:1024px){
