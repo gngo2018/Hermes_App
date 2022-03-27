@@ -33,3 +33,9 @@ button{
   border:none;
   font-size:16px;
 }
+
+.error_message{
+  color:red;
+  font-style: italic;
+  font-weight: 300;
+}

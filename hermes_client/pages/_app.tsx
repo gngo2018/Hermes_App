@@ -6,11 +6,12 @@ import '../styles/globals.css'
 import { UserContext } from '../contexts/UserContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const [userName, setUserName] = useState('Guest');
+    const [userName, setUserName] = useState('');
+    const [profileColor, setProfileColor] = useState('red');
     const [pageTitle, setPageTitle] = useState('Home');
     return (
         <PageTitleContext.Provider value={{ pageTitle, setPageTitle }}>
-            <UserContext.Provider value={{ userName: userName, setUserName: setUserName }}>
+            <UserContext.Provider value={{ userName: userName, setUserName: setUserName, profileColor: profileColor, setProfileColor: setProfileColor }}>
                 <Header />
                 <Component {...pageProps} />
             </UserContext.Provider>
