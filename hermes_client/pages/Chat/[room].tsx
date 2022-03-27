@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { io, Socket } from 'socket.io-client'
@@ -15,6 +15,7 @@ export default function Room() {
         { id: 3, messageSender: 'Sebastian', message: 'Why do cows moo?', profileColor: 'blue' },
         { id: 4, messageSender: 'Cortana', message: 'I think I am in the wrong chat...', profileColor: 'var(--purple)' }
     ]
+    const messagesEndRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
     const { room } = router.query;
     const { userName } = useUserContext();
@@ -38,6 +39,20 @@ export default function Room() {
         }
     }
 
+    const scrollToBottom = () => {
+        if(messagesEndRef.current){
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+        }
+    }
+
+    useEffect(() => {
+        console.log(socket);
+
+        socket.on('hello', (arg) => {
+            console.log('Message from server:', arg);
+        });
+    }, []);
+
     useEffect(() => {
         if (room) {
             setPageTitle(room.toString());
@@ -46,12 +61,8 @@ export default function Room() {
     }, [room]);
 
     useEffect(() => {
-        console.log(socket);
-
-        socket.on('hello', (arg) => {
-            console.log('Message from server:', arg);
-        });
-    }, [])
+        scrollToBottom();
+    }, [messageLog]);
 
     useEffect(() => {
         socket.on('chat-response', msgObj => {
@@ -78,7 +89,7 @@ export default function Room() {
             <div className={chatStyles.chat_log}>
                 {
                     messageLog.map((message, index) =>
-                        <div key={index}>
+                        <div key={index} ref={messagesEndRef}>
                             {
                                 message.id !== 5 ?
                                     <div className={chatStyles.message_flex_container}>

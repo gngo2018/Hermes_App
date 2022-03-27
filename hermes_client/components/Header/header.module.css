@@ -13,7 +13,6 @@
 
 .header_container h2{
     margin: 0;
-    width:150px;
     cursor:pointer;
 }
 
@@ -25,7 +24,6 @@
 }
 
 .header_right_container{
-    width:150px;
     display: flex;
     align-items: center;
     justify-content: right;
